@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 import { connect } from "react-redux";
+import { createStackNavigator } from "@react-navigation/stack";
+import Deck from "./Deck";
 
 class DeckList extends Component {
   render() {
     const { decks } = this.props;
     console.log(this.props);
+    const Stack = createStackNavigator();
     return (
         <View style={styles.container}>
           {decks &&
@@ -15,6 +18,15 @@ class DeckList extends Component {
                 <View key={deck}>
                 <Text>{title}</Text>
                 <Text>{questions.length}</Text>
+                <Button
+                  title="Go to Details"
+                  onPress={() =>
+                    this.props.navigation.navigate("Deck", {
+                      id: 9,
+                      title: title
+                    })
+                  }
+                />
               </View>
             );
           })}

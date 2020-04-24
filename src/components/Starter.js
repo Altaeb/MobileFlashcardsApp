@@ -1,12 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import DeckList from "./DeckList";
 import AddDeck from "./AddDeck";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { red, gray } from "../utils/colors";
 import handleInitialData from "../actions/shared";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Deck from "./Deck";
+import { createStackNavigator } from "@react-navigation/stack";
+
+const DeckStack = createStackNavigator();
+
+function DeckStackScreen() {
+  return (
+    <DeckStack.Navigator>
+      <DeckStack.Screen
+        name="DeckList"
+        component={DeckList}
+        options={{ title: "Overview" }}
+      />
+      <DeckStack.Screen name="Deck" component={Deck} />
+    </DeckStack.Navigator>
+  );
+}
 
 class Starter extends React.Component {
   state = {};
@@ -16,29 +34,32 @@ class Starter extends React.Component {
   }
   render() {
     const Tab = createBottomTabNavigator();
+
     return (
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-              if (route.name === "Dec kList") {
-                iconName = "ios-pricetags";
-              } else {
-                iconName = "ios-add";
+       <React.Fragment>
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+                if (route.name === "Dec kList") {
+                  iconName = "ios-pricetags";
+                } else {
+                  iconName = "ios-add";
+                }
+                return <Ionicons name={iconName} />;
               }
-              return <Ionicons name={iconName} />;
-            }
-          })}
-          tabBarOptions={{
-            activeTintColor: red,
-            inactiveTintColor: gray
-          }}
-        >
-          <Tab.Screen name="Dec kList" component={DeckList} />
-          <Tab.Screen name="Add Deck" component={AddDeck} />
-        </Tab.Navigator>
-      </NavigationContainer>
+            })}
+            tabBarOptions={{
+              activeTintColor: red,
+              inactiveTintColor: gray
+            }}
+          >
+            <Tab.Screen name="Dec kList" component={DeckStackScreen} />
+            <Tab.Screen name="Add Deck" component={AddDeck} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </React.Fragment>
     );
   }
 }

@@ -29,7 +29,6 @@ class AddDeck extends Component {
       };
   
       createDeck(deck).then(() => {
-        console.log(deck);
         dispatch(addDeck(deck));
         this.setState({ text: "" });
       });
