@@ -5,7 +5,7 @@ export const DECKS_STORAGE_KEY = "mobileFlashcards:Decks";
 
 export function initialData() {
   AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(Data));
-  return data;
+  return Data;
 }
 
 export function fetchDecks() {

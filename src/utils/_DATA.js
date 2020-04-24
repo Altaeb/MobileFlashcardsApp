@@ -1,4 +1,4 @@
-export default data = {
+const data = {
     Proramming: {
       title: "Proramming",
       questions: [
@@ -22,3 +22,5 @@ export default data = {
       ]
     }
   };
+
+  export default data;

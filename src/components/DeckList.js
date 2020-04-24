@@ -1,17 +1,32 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { fetchDecks } from "../utils/API";
 
-export default class DeckList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+class DeckList extends Component {
+    state = {
+      decks: {}
+    };
+    componentDidMount() {
+      fetchDecks().then(decks => this.setState({ decks }));
   }
 
   render() {
+    const { decks } = this.state;
     return (
       <View>
-        <Text> DeckList </Text>
+          {decks &&
+          Object.keys(decks).map(deck => {
+            const { title, questions } = decks[deck];
+            return (
+              <View>
+                <Text>{title}</Text>
+                <Text>{questions.length}</Text>
+              </View>
+            );
+          })}
       </View>
     );
   }
 }
+
+export default DeckList;
