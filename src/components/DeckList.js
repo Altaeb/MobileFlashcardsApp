@@ -2,7 +2,37 @@ import React, { Component } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { createStackNavigator } from "@react-navigation/stack";
-
+import {
+    TouchableOpacity,
+    FlatList,
+    ScrollView
+  } from "react-native-gesture-handler";
+  
+  function Decks({ title, length }) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          pading: 10
+        }}
+      >
+        <Text style={{ fontWeight: "bold" }}>{title}</Text>
+        <View
+          style={{
+            width: 30,
+            height: 20,
+            backgroundColor: "#e332",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Text style={{ alignSelf: "center", fontWeight: "400" }}>{length}</Text>
+        </View>
+      </View>
+    );
+  }
 class DeckList extends Component {
   render() {
     const { decks } = this.props;
@@ -10,25 +40,40 @@ class DeckList extends Component {
     const Stack = createStackNavigator();
     return (
         <View style={styles.container}>
+           <View
+          style={{
+            flexDirection: "row",
+            alignItems: "space-between",
+            justifyContent: "space-between",
+            padding: 15
+          }}
+        >
+          <Text>Title </Text>
+          <Text>Cards </Text>
+        </View>
+
+        <ScrollView style={[styles.container]}>
           {decks &&
-          Object.keys(decks).map(deck => {
-            const { title, questions } = decks[deck];
-            return (
-                <View key={deck}>
-                <Text>{title}</Text>
-                <Text>{questions.length}</Text>
-                <Button
-                  title="Go to Details"
+            Object.keys(decks).map(deck => {
+              const { title, questions } = decks[deck];
+              return (
+                <TouchableOpacity
+                  style={{
+                    padding: 10,
+                    margin: 5,
+                    backgroundColor: "#d0c9f122"
+                  }}
                   onPress={() =>
                     this.props.navigation.navigate("Deck View", {
-                      id: 9,
                       title: title
                     })
                   }
-                />
-              </View>
-            );
-          })}
+                  >
+                  <Decks key={deck} title={title} length={questions.length} />
+                </TouchableOpacity>
+              );
+            })}
+        </ScrollView> 
       </View>
     );
   }
@@ -37,9 +82,7 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#fff",
-      alignItems: "center",
-      justifyContent: "center"
+      backgroundColor: "#fff"
     }
   });
   

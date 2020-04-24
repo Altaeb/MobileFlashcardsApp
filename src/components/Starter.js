@@ -21,7 +21,7 @@ function DeckStackScreen() {
       <DeckStack.Screen
         name="DeckList"
         component={DeckList}
-        options={{ title: "Overview" }}
+        options={{ title: "Decks List" }}
       />
       <DeckStack.Screen name="Deck View" component={DeckView} />
       <DeckStack.Screen name="Add Card" component={AddQuestion} />
