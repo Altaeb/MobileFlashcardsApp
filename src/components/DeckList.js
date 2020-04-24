@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { createStackNavigator } from "@react-navigation/stack";
-import Deck from "./Deck";
 
 class DeckList extends Component {
   render() {
@@ -21,7 +20,7 @@ class DeckList extends Component {
                 <Button
                   title="Go to Details"
                   onPress={() =>
-                    this.props.navigation.navigate("Deck", {
+                    this.props.navigation.navigate("DeckView", {
                       id: 9,
                       title: title
                     })

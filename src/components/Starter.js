@@ -8,8 +8,9 @@ import AddDeck from "./AddDeck";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { red, gray } from "../utils/colors";
 import handleInitialData from "../actions/shared";
-import Deck from "./Deck";
+import DeckView from "./DeckView";
 import { createStackNavigator } from "@react-navigation/stack";
+import AddQuestion from "./AddQuestion";
 
 const DeckStack = createStackNavigator();
 
@@ -21,7 +22,8 @@ function DeckStackScreen() {
         component={DeckList}
         options={{ title: "Overview" }}
       />
-      <DeckStack.Screen name="Deck" component={Deck} />
+      <DeckStack.Screen name="DeckView" component={DeckView} />
+      <DeckStack.Screen name="AddQuestion" component={AddQuestion} />
     </DeckStack.Navigator>
   );
 }
