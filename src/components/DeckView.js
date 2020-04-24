@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { blue, purple, white } from "../utils/colors";
 
 class DeckView extends React.Component {
   render() {
@@ -25,15 +26,24 @@ class DeckView extends React.Component {
         </View>
 
         <TouchableOpacity
+            style={{
+                backgroundColor: white,
+                margin: 20,
+                padding: 10,
+                borderWidth: 2,
+                borderStyle: "solid",
+                borderRadius: 7,
+                height: 45,
+                borderColor: blue
+              }}
           onPress={() => {
-            this.props.navigation.navigate("AddQuestion", {
+            this.props.navigation.navigate("Add Card", {
               title,
               questions
             });
           }}
-          style={styles.addCard}
         >
-          <Text style={styles.addCardTitle}>Add Card</Text>
+        <Text style={[styles.startQuizTitle, { color: blue }]}>Add Card</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -57,27 +67,22 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20
   },
-  addCard: {
-    backgroundColor: "#fff",
-    margin: 24,
+  startQuiz: {
+    backgroundColor: purple,
+    margin: 20,
+    marginTop: 0,
     padding: 10,
     borderRadius: 7,
     height: 45
   },
-  startQuiz: {
-    backgroundColor: "#000",
-    margin: 24,
-    padding: 10,
-    height: 45,
-    borderRadius: 2
-  },
+
   addCardTitle: {
-    color: "#000",
+    color: blue,
     fontSize: 22,
     textAlign: "center"
   },
   startQuizTitle: {
-    color: "#fff",
+    color: white,
     fontSize: 22,
     textAlign: "center"
   }

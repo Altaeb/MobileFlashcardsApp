@@ -20,7 +20,7 @@ class DeckList extends Component {
                 <Button
                   title="Go to Details"
                   onPress={() =>
-                    this.props.navigation.navigate("DeckView", {
+                    this.props.navigation.navigate("Deck View", {
                       id: 9,
                       title: title
                     })

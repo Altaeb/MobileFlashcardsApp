@@ -11,6 +11,7 @@ import handleInitialData from "../actions/shared";
 import DeckView from "./DeckView";
 import { createStackNavigator } from "@react-navigation/stack";
 import AddQuestion from "./AddQuestion";
+import Quiz from "./Quiz";
 
 const DeckStack = createStackNavigator();
 
@@ -22,8 +23,9 @@ function DeckStackScreen() {
         component={DeckList}
         options={{ title: "Overview" }}
       />
-      <DeckStack.Screen name="DeckView" component={DeckView} />
-      <DeckStack.Screen name="AddQuestion" component={AddQuestion} />
+      <DeckStack.Screen name="Deck View" component={DeckView} />
+      <DeckStack.Screen name="Add Card" component={AddQuestion} />
+      <DeckStack.Screen name="Quiz" component={Quiz} />
     </DeckStack.Navigator>
   );
 }

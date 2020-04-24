@@ -1,8 +1,15 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Button, TextInput } from "react-native";
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    TextInput
+  } from "react-native";
 import { connect } from "react-redux";
 import { createDeck } from "../utils/API";
 import { addDeck } from "../actions/decks";
+import { white, purple, blue } from "../utils/colors";
 
 class AddDeck extends Component {
     state = {
@@ -37,12 +44,23 @@ class AddDeck extends Component {
   render() {
     return (
         <View style={styles.container}>
-        <Text> Add New Deck </Text>
-        <Text>Deck Name</Text>
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+          Write the title of the new deck{" "}
+        </Text>
         <TextInput
+         style={styles.input}
           onChangeText={text => this.updateText(text)}
+          value={this.state.text}
         ></TextInput>
-        <Button title="Submit" onPress={e => this.submitDeck(e)}></Button>
+        <TouchableOpacity
+          title="Submit"
+          onPress={e => this.submitDeck(e)}
+          style={styles.submitBtn}
+        >
+          <Text style={{ color: white, fontSize: 18, textAlign: "center" }}>
+            Submit
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -50,9 +68,33 @@ class AddDeck extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#fff",
+      backgroundColor: white,
       alignItems: "center",
       justifyContent: "center"
+    },
+    input: {
+      width: 300,
+      height: 40,
+      padding: 12,
+      borderWidth: 1,
+      borderColor: purple,
+      backgroundColor: white,
+      borderRadius: 5,
+      margin: 16
+    },
+    submitBtn: {
+      backgroundColor: purple,
+      margin: 20,
+      marginTop: 0,
+      padding: 10,
+      borderRadius: 7,
+      height: 45,
+      width: 200
+    },
+    submitText: {
+      color: white,
+      fontSize: 18,
+      textAlign: "center"
     }
   });
   
