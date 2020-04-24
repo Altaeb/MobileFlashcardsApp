@@ -1,24 +1,18 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { fetchDecks } from "../utils/API";
+import { connect } from "react-redux";
 
 class DeckList extends Component {
-    state = {
-      decks: {}
-    };
-    componentDidMount() {
-      fetchDecks().then(decks => this.setState({ decks }));
-  }
-
   render() {
-    const { decks } = this.state;
+    const { decks } = this.props;
+    console.log(this.props);
     return (
-      <View>
+        <View style={styles.container}>
           {decks &&
           Object.keys(decks).map(deck => {
             const { title, questions } = decks[deck];
             return (
-              <View>
+                <View key={deck}>
                 <Text>{title}</Text>
                 <Text>{questions.length}</Text>
               </View>
@@ -29,4 +23,17 @@ class DeckList extends Component {
   }
 }
 
-export default DeckList;
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  });
+  
+  export default connect(decks => {
+    return {
+      decks
+    };
+  })(DeckList);

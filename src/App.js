@@ -1,43 +1,19 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import DeckList from "./components/DeckList";
-import AddDeck from "./components/AddDeck";
+import { StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducer from "./reducers";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import middleware from "./middlewares";
+import Starter from "./components/Starter";
 
-export default function App() {
-  const Tab = createBottomTabNavigator();
-  return (
-    <Provider store={createStore(reducer)}>
-    <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-
-              if (route.name === "Dec kList") {
-                iconName = "ios-pricetags";
-              } else {
-                iconName = "ios-add";
-              }
-              return <Ionicons name={iconName} />;
-            }
-          })}
-          tabBarOptions={{
-            activeTintColor: "blue",
-            inactiveTintColor: "gray"
-          }}
-        >
-          <Tab.Screen name="Dec kList" component={DeckList} />
-          <Tab.Screen name="Add Deck" component={AddDeck} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </Provider>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <Provider store={createStore(reducer, middleware)}>
+        <Starter />
+      </Provider>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -48,3 +24,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;

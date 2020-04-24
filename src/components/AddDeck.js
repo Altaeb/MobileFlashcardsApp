@@ -9,21 +9,27 @@ class AddDeck extends Component {
       text: ""
     };
   
+    updateText = text => {
+        console.log(text);
+        this.setState({ text });
+      };
+    
     submitDeck = e => {
       e.preventDefault();
       if (this.state.text.trim() === "") {
         return;
       }
-      const { title } = this.state;
+      const title = this.state.text;
       const { dispatch } = this.props;
       const deck = {
         [title]: {
-          title: this.state.text,
+          title: title,
           questions: []
         }
       };
   
-      createDeck(deck).then(deck => {
+      createDeck(deck).then(() => {
+        console.log(deck);
         dispatch(addDeck(deck));
         this.setState({ text: "" });
       });
@@ -35,12 +41,7 @@ class AddDeck extends Component {
         <Text> Add New Deck </Text>
         <Text>Deck Name</Text>
         <TextInput
-          onChangeText={text =>
-            this.setState({
-              text
-            })
-          }
-          value={this.state.text}
+          onChangeText={text => this.updateText(text)}
         ></TextInput>
         <Button title="Submit" onPress={e => this.submitDeck(e)}></Button>
       </View>
