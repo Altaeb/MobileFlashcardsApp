@@ -10,14 +10,13 @@ function decks(state = {}, action) {
       return { ...state, ...action.deck };
 
     case ADD_CARD:
-      const { title, question, answer } = action.params;
+        const { title, question, answer } = action.cardInfo;
+        console.log(status[title]);
       return {
         ...state,
         [title]: {
           ...state[title],
-          questions: JSON.parse(JSON.stringify(state[title].questions)).concat([
-            { question, answer }
-          ])
+          questions: state[title].questions.concat([{ question, answer }])
         }
       };
 
