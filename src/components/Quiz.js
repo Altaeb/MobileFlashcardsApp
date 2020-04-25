@@ -1,6 +1,14 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
-import { red, purple, green, orange, white, blue } from "../utils/colors";
+import {
+    red,
+    purple,
+    green,
+    orange,
+    white,
+    blue,
+    black
+  } from "../utils/colors";
 
 class Quiz extends React.Component {
   state = {
@@ -57,7 +65,7 @@ class Quiz extends React.Component {
             >
               <View>
                 <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                  Question: {questionLeft} of {questions.length}
+                Question: {questionLeft} of {questions.length}:{" "}
                 </Text>
               </View>
             </View>
@@ -65,7 +73,14 @@ class Quiz extends React.Component {
             <View style={{ flex: 3 }}>
               <View>
                 <View style={{ alignItems: "center" }}>
-                  <Text style={{ fontSize: 36, flex: 1, alignItems: "center" }}>
+                <Text
+                    style={{
+                      fontSize: 20,
+
+                      alignItems: "center",
+                      color: black
+                    }}
+                  >
                     {questions[questionIndex].question} ?
                   </Text>
 

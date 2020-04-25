@@ -5,8 +5,12 @@ import { createStore } from "redux";
 import reducer from "./reducers";
 import middleware from "./middlewares";
 import Starter from "./components/Starter";
+import { setLocalNotification } from "./utils/helpers";
 
 class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={createStore(reducer, middleware)}>

@@ -11,7 +11,6 @@ function decks(state = {}, action) {
 
     case ADD_CARD:
         const { title, question, answer } = action.cardInfo;
-        console.log(status[title]);
       return {
         ...state,
         [title]: {

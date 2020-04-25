@@ -9,7 +9,7 @@ import {
 import { connect } from "react-redux";
 import { createDeck } from "../utils/API";
 import { addDeck } from "../actions/decks";
-import { white, purple, blue } from "../utils/colors";
+import { white, purple } from "../utils/colors";
 
 class AddDeck extends Component {
     state = {
@@ -27,7 +27,7 @@ class AddDeck extends Component {
         return;
       }
       const title = this.state.text;
-      const { dispatch } = this.props;
+      const { dispatch, navigation } = this.props;
       const deck = {
         [title]: {
           title: title,
@@ -38,6 +38,7 @@ class AddDeck extends Component {
       createDeck(deck).then(() => {
         dispatch(addDeck(deck));
         this.setState({ text: "" });
+        navigation.navigate("Dec kList");
       });
     };
 
