@@ -16,7 +16,7 @@ export function fetchDecks() {
 
 export function createDeck(deck) {
   return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(deck));
-  
+  //AsyncStorage.removeItem(DECKS_STORAGE_KEY);
 }
 
 export function addQuestion({ card, deckName }) {

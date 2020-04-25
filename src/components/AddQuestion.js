@@ -18,27 +18,26 @@ class AddQuestion extends React.Component {
     answer: ""
   };
 
-
-submitQuestion = () => {
+  submitQuestion = () => {
     const { question, answer } = this.state;
 
     if (question.trim() === "" || answer.trim() === "") {
-        return;
-      }
+      return;
+    }
 
     const { title } = this.props.route.params;
     const { dispatch, navigation } = this.props;
 
     addQuestion({
-        card: { question, answer },
-        deckName: title
+      card: { question, answer },
+      deckName: title
     }).then(() => {
-    dispatch(
-      addCard({
-        title,
-        question,
-        answer
-      })
+      dispatch(
+        addCard({
+          title,
+          question,
+          answer
+        })
       );
       this.setState({
         question: "",
@@ -46,9 +45,8 @@ submitQuestion = () => {
       });
       navigation.goBack();
     });
+  };
 
-    };
-   
   render() {
     const { question, answer } = this.state;
 
@@ -60,7 +58,7 @@ submitQuestion = () => {
           style={style.input}
           onChangeText={question => this.setState({ question })}
         />
-       <Text style={{ fontSize: 16, fontWeight: "bold" }}>The Answer </Text>
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>The Answer </Text>
         <TextInput
           value={answer}
           style={style.input}
@@ -83,7 +81,7 @@ const style = StyleSheet.create({
     flex: 1,
     backgroundColor: white,
     alignItems: "center",
-    paddingTop: 40
+    paddingTop: 50
   },
   input: {
     width: 300,

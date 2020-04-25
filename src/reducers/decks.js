@@ -6,11 +6,11 @@ function decks(state = {}, action) {
       return { ...state, ...action.decks };
 
     case ADD_DECK:
-        console.log(action);
+      console.log(action);
       return { ...state, ...action.deck };
 
     case ADD_CARD:
-        const { title, question, answer } = action.cardInfo;
+      const { title, question, answer } = action.cardInfo;
       return {
         ...state,
         [title]: {

@@ -26,16 +26,16 @@ class DeckView extends React.Component {
         </View>
 
         <TouchableOpacity
-            style={{
-                backgroundColor: white,
-                margin: 20,
-                padding: 10,
-                borderWidth: 2,
-                borderStyle: "solid",
-                borderRadius: 7,
-                height: 45,
-                borderColor: blue
-              }}
+          style={{
+            backgroundColor: white,
+            margin: 20,
+            padding: 10,
+            borderWidth: 2,
+            borderStyle: "solid",
+            borderRadius: 7,
+            height: 45,
+            borderColor: blue
+          }}
           onPress={() => {
             this.props.navigation.navigate("Add Card", {
               title,
@@ -43,7 +43,7 @@ class DeckView extends React.Component {
             });
           }}
         >
-        <Text style={[styles.startQuizTitle, { color: blue }]}>Add Card</Text>
+          <Text style={[styles.startQuizTitle, { color: blue }]}>Add Card</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -65,6 +65,7 @@ class DeckView extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: white,
     paddingTop: 20
   },
   startQuiz: {
@@ -75,7 +76,6 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     height: 45
   },
-
   addCardTitle: {
     color: blue,
     fontSize: 22,

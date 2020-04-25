@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import reducer from "./reducers";
-import middleware from "./middlewares";
-import Starter from "./components/Starter";
-import { setLocalNotification } from "./utils/helpers";
+import reducer from "./src/reducers";
+import middleware from "./src/middlewares";
+import Starter from "./src/components/Starter";
+import { setLocalNotification } from "./src/utils/helpers";
 
 class App extends React.Component {
   componentDidMount() {

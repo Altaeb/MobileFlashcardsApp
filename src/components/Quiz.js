@@ -1,14 +1,15 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import {
-    red,
-    purple,
-    green,
-    orange,
-    white,
-    blue,
-    black
-  } from "../utils/colors";
+  red,
+  purple,
+  green,
+  orange,
+  white,
+  blue,
+  black
+} from "../utils/colors";
+import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
 
 class Quiz extends React.Component {
   state = {
@@ -24,6 +25,24 @@ class Quiz extends React.Component {
       correctAnswers: correctAnswers + 1,
       showAnswer: false
     });
+    this.checkCompleteQiz();
+  };
+
+  //this function to reset the local notification after confirming that
+  // all the questions has been answerd.
+  checkCompleteQiz = () => {
+    const { questions } = this.props.route.params;
+    if (
+      questions.length !== 0 &&
+      questions.length - this.state.questionIndex === 1
+    ) {
+     // clearLocalNotification().then(setLocalNotification);
+    }
+  };
+
+  onIncorrect = () => {
+    this.setState({ questionIndex: this.state.questionIndex + 1 });
+    this.checkCompleteQiz();
   };
 
   startQuiz = () => {
@@ -36,10 +55,6 @@ class Quiz extends React.Component {
 
   backToDeck = () => {
     this.props.navigation.goBack();
-  };
-
-  onIncorrect = () => {
-    this.setState({ questionIndex: this.state.questionIndex + 1 });
   };
 
   showAnswer = () => {
@@ -65,7 +80,7 @@ class Quiz extends React.Component {
             >
               <View>
                 <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                Question: {questionLeft} of {questions.length}:{" "}
+                  Question: {questionLeft} of {questions.length}:{" "}
                 </Text>
               </View>
             </View>
@@ -73,7 +88,7 @@ class Quiz extends React.Component {
             <View style={{ flex: 3 }}>
               <View>
                 <View style={{ alignItems: "center" }}>
-                <Text
+                  <Text
                     style={{
                       fontSize: 20,
 

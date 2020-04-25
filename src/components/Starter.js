@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import DeckList from "./DeckList";
 import AddDeck from "./AddDeck";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import { red, gray } from "../utils/colors";
+import { Ionicons } from "@expo/vector-icons";
+import { gray, purple } from "../utils/colors";
 import handleInitialData from "../actions/shared";
 import DeckView from "./DeckView";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -25,7 +24,11 @@ function DeckStackScreen() {
       />
       <DeckStack.Screen name="Deck View" component={DeckView} />
       <DeckStack.Screen name="Add Card" component={AddQuestion} />
-      <DeckStack.Screen name="Quiz" component={Quiz} />
+      <DeckStack.Screen
+        name="Quiz"
+        component={Quiz}
+        options={{ navigation: {} }}
+      />
     </DeckStack.Navigator>
   );
 }
@@ -40,7 +43,7 @@ class Starter extends React.Component {
     const Tab = createBottomTabNavigator();
 
     return (
-       <React.Fragment>
+      <React.Fragment>
         <NavigationContainer>
           <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -51,11 +54,11 @@ class Starter extends React.Component {
                 } else {
                   iconName = "ios-add";
                 }
-                return <Ionicons name={iconName} />;
+                return <Ionicons name={iconName} size={20} color={color} />;
               }
             })}
             tabBarOptions={{
-              activeTintColor: red,
+              activeTintColor: purple,
               inactiveTintColor: gray
             }}
           >
